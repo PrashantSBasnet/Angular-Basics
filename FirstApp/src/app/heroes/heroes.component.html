@@ -30,11 +30,14 @@ the ngIf removes the hero detail from the DOM. There are no selectedHero binding
 to consider.When the user picks a hero, selectedHero has a value and ngIf puts
 the hero detail into the DOM.-->
 
-<div *ngIf="selectedHero">
+<!-- <div *ngIf="selectedHero">
 <h2>{{selectedHero.name | uppercase}} Details</h2>
 <div>id: {{selectedHero.id}}</div>
 <div>
   <label for="hero-name">Hero name: </label>
   <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
 </div>
-</div>
+</div> -->
+
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+
