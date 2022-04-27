@@ -15,8 +15,8 @@
         <a class="nav-link" routerLink="./services">Services</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link disabled" href="#">Something else</a>
-      </li>
+        <!-- calls logout function if user clicks -->
+        <a class="nav-link" (click)="logout()">Logout</a>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
