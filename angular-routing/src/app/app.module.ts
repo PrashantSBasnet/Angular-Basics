@@ -9,6 +9,14 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UserComponent } from './modules/user/user.component';
+import { AdminDashboardComponent } from './modules/admin/components/admin-dashboard/admin-dashboard.component';
+import { HeaderComponent } from './modules/admin/components/header/header.component';
+import { AboutComponent } from './modules/admin/components/about/about.component';
+import { HomeComponent } from './modules/admin/components/home/home.component';
+import { ServicesComponent } from './modules/admin/components/services/services.component';
+import { FooterComponent } from './modules/admin/components/footer/footer.component';
 
 
 @NgModule({
@@ -16,7 +24,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HeaderComponent,
+    AboutComponent,
+    HomeComponent,
+    ServicesComponent,
+    UserComponent,
+    AdminDashboardComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +40,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

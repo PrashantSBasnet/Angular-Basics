@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  faLock= faLock;
+  faLock = faLock;
 
   //creating reactive from with email and password
   loginForm = new FormGroup({
@@ -19,27 +20,34 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   })
 
-  constructor(private auth:AuthService, private router:Router) { }
+  constructor(private auth: AuthService, private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
-    if (this.auth.isLoggedIn()){  //redirecting user back to admin page if already logged in as admin
+    if (this.auth.isLoggedIn()) {  //redirecting user back to admin page if already logged in as admin
       this.router.navigate(['admin']);
     }
-   }
+  }
 
   //implementing onSubmit function
-  onSubmit():void{
-    console.log(this.loginForm.value);
-    if (this.loginForm.valid){
-      this.auth.login(this.loginForm.value).subscribe(
-        (result)=>{
-          this.router.navigate(['admin']);
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      const username = this.loginForm.value.email;
+      const password = this.loginForm.value.password;
+      const token = btoa(`${username}:${password}`);
+      this.httpClient.get<any>('http://localhost:8080/authenticate', { headers: { 'Authorization': 'Basic ' + token } }).subscribe(
+        result => {
+          sessionStorage.setItem('token', token);
+          sessionStorage.setItem('userInfo', JSON.stringify(result));
+          if (result?.roles?.includes('ADMIN')) {
+            this.router.navigate(['/admin']);
+          } else {
+            this.router.navigate(['/user']);
+          }
         },
-        (err:Error)=>{
+        err => {
           alert(err.message);
         }
       );
     }
   }
-
 }
