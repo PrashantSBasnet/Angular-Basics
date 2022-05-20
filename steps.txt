@@ -1,0 +1,43 @@
+module.ts
+app.module.ts
+index.html <app-route> loads app.component.ts
+app.component.ts -- html, css and all..
+
+
+Components
+app.component is on top of other components. add other components on it
+
+
+components
+	- used to build web pages (UI)
+	- empty typescript class (eg AppComponent {} ) and we transfer it into something else by add a decorator @NgModule({})
+	
+
+
+module
+	to bundle different pieces/functionality of app (eg.components of app) into packages
+	empty typescript class (eg AppModule {} ) and we transfer it into something else by add a decorator @NgModule({})
+
+
+why we import typescript classes (like server.component) without .ts extension?
+-because the extension is added by webpack which bundles our project automatically
+-angular when runs will know that server.component.ts is a part of the app
+
+
+what do imports do?
+- allow us to add other modules in a module
+- angular itself is split into modules (BrowserModule, FormsModule, etc.)
+
+
+selecting by class is also supported by angular
+e.g 
+	selector: '.app-servers'
+	in html file  <div class= "app-servers">...</div>
+
+
+Data Binding
+String interpolation {{ data }}  --data can be in the form of number or other formats which can be converted easily into String
+Property binding [property]="data"
+Event Binding (event) ="expression"
+Two-way-binding [(ngModel)]="data"
+	
