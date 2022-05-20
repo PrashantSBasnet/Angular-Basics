@@ -34,10 +34,29 @@ e.g
 	selector: '.app-servers'
 	in html file  <div class= "app-servers">...</div>
 
+constructor()
+	method executable at the point of time the component is created by angular
+
 
 Data Binding
 String interpolation {{ data }}  --data can be in the form of number or other formats which can be converted easily into String
 Property binding [property]="data"
 Event Binding (event) ="expression"
 Two-way-binding [(ngModel)]="data"
+
+
+Directives 
+	instruction in the DOM
+	e.g using selector to use components
+
+Structural directive
+*ngIf
+	* is required 
+	structural directive because it changes the structure of our DOM (it either adds the element or doesn't)
+
+using ngStyle
+
+Attribute directives
+
+
 	
