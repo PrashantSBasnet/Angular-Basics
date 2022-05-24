@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-recipes',
@@ -11,4 +11,5 @@ export class RecipesComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 }

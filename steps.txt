@@ -56,7 +56,12 @@ Structural directive
 
 using ngStyle
 
+*ngFor 
+	let i = index (index gives access to the 
+
 Attribute directives
 
+Models
+	typescript file
 
 	
