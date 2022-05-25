@@ -98,6 +98,11 @@ View Capsulation
 
 
 Local Reference in Templates
+	input type="text" class="form-control"
+    	#severNameInput> <!-- use of local reference instead of two way binding -> [(ngModel)]="newServerName"> -->
+	
+
+Projecting Content Into Components with ng-content
 
 
 
