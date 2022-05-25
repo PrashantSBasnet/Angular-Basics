@@ -33,12 +33,14 @@ export class CockpitComponent implements OnInit {
     });
   }
 
-  onAddBlueprint(nameInput:HTMLInputElement){
-    this.bluePrintCreated.emit({
-      //serverName: this.newServerName,
-      serverName: nameInput.value,
+  onAddServerBluePrint(nameInput: HTMLInputElement){
+    console.log(nameInput); //gives element in console
+    console.log(nameInput.value); //gives value in console
+    this.serverCreated.emit({
+     // serverName: this.newServerName,
+       serverName:nameInput.value,
       serverContent:this.serverContentInput.nativeElement.value
-    })
+    });
   }
 }
 
