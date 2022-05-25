@@ -63,5 +63,46 @@ Attribute directives
 
 Models
 	typescript file
+	typescript is not supported by browser. it is converted into javascript to be runnable
+
+Feature of typescript:
+
+	The constructor automatically creates name  and amount attributes because of the use of accessmodifier public. 
+	if public is not used it acts as a typical constructor that requires attributes to be defined.
+	export class Ingredient{
+  		constructor(public name: string, public amount:number){}
+	}
+	
+
+Component and Databinding
+	Property and Event Binding
+	Binding to Custom Properties
+		(default) all properties of components are only accessible inside that component
+		@Input() decorator solves this problem by exposing it to other components
+		@Input()  element: { type: string; name: string; content: string; } | any; 
+		assigning alias e.g @Input('sample')... now alias name ('sample') should be used in other components to pass data
+		@Input - to make a property bindable from outside
+		@Output() - to make a property listenable from outside e.g. emit
+
+Cross Component Communication
+	Approach 1: using @Input and @Output (Binding to Custom Properties)
+	Approach 2: 
+
+
+Event Capsulation 
+
+
+View Capsulation
+	shadow DOM supported by certain browsers
+	@Component {(encapsulation: ViewEncapsulation.None)} makes the style global e.g. changing css style in one component overrides the style in all components.
+
+
+Local Reference in Templates
+
+
+
+
+
+
 
 	

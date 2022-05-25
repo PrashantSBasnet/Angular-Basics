@@ -1,0 +1,8 @@
+p {
+  color:blue;
+}
+
+/* label is in the concpit component but ViewEncapsulation.None makes the following label global */
+label {
+  color:red;
+}
