@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-better-highlight',
-  templateUrl: './better-highlight.component.html',
-  styleUrls: ['./better-highlight.component.css']
+import { OnInit, ElementRef, Renderer2, Directive } from '@angular/core';
+@Directive({
+  selector: '[appBetterHighlight]]'
 })
 export class BetterHighlightComponent implements OnInit {
 
-  constructor() { }
+  constructor(private elRef: ElementRef, private renderer:Renderer2) { }
 
   ngOnInit(): void {
+    this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
   }
 
 }
