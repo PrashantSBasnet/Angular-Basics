@@ -82,7 +82,7 @@ Component and Databinding
 		@Input()  element: { type: string; name: string; content: string; } | any; 
 		assigning alias e.g @Input('sample')... now alias name ('sample') should be used in other components to pass data
 		@Input - to make a property bindable from outside
-		@Output() - to make a property listenable from outside e.g. emit
+		@Output() - to make a property listenable from outside i.e. parent component e.g. emit
 
 Cross Component Communication
 	Approach 1: using @Input and @Output (Binding to Custom Properties)
@@ -103,8 +103,24 @@ Local Reference in Templates
 	
 
 Projecting Content Into Components with ng-content
+	-(default angular behaviour) every HTML between opening and closing <app-server-element>....</app-server-element> is lost 
+	-put <ng-content></ng-content> where it is to be displayed	
+	-can be used for navigation for simple apps
 
 
+LifeCycle of Component
+	ngOnChanges		Starts when new component is created. Also called after a bound input property changes (when property receives new values)
+	ngOnInit		Called once the component is initialized. Component is not added to DOM yet so invisible. 
+	ngDoCheck 		Called during every change detection run (e.g when property changes) executed on every check. (e.g for every triggering events, timer)
+	ngAfterContentInit 	Called after content (ng-content) has been projected into view
+	ngAfterContentChecked	Called every time the projected content has been checked
+	ngAfterViewInit 	Called after the component's view (and child views) has been initialized
+	ngAfterViewChecked 	Called every time the view (and child's views) have been checked
+	ngOnDestroy		Called once the component is about to be distroyed
+
+	
+	
+	
 
 
 
