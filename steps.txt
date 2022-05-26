@@ -81,8 +81,9 @@ Component and Databinding
 		@Input() decorator solves this problem by exposing it to other components
 		@Input()  element: { type: string; name: string; content: string; } | any; 
 		assigning alias e.g @Input('sample')... now alias name ('sample') should be used in other components to pass data
-		@Input - to make a property bindable from outside
-		@Output() - to make a property listenable from outside i.e. parent component e.g. emit
+		
+		@Input - from parent to child component
+		@Output() - from child to parent component/ to make a property listenable from outside i.e. parent component e.g. emit
 
 Cross Component Communication
 	Approach 1: using @Input and @Output (Binding to Custom Properties)
@@ -120,10 +121,4 @@ LifeCycle of Component
 
 	
 	
-	
-
-
-
-
-
-	
+Adding navigation with EventBinding and ngIf
