@@ -1,0 +1,10 @@
+Adding navigation with EventBinding and ngIf
+LocalReferene #.. for shoppint list
+
+
+
+- Adding navigation using EventBinding @Input @Ouput and ngIf
+- Parent -- recipeList looping recipeitem in it
+  Child	--  recipeItem
+
+revise - 87,88 

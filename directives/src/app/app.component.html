@@ -17,8 +17,40 @@
     {{ odd }}
   </li>
 </div>
+<hr>
+<p>Using ng-template shows only odd</p>
+<ng-template [ngIf] ="!onlyOdd">
+  <div>
+    <li
+       *ngFor="let odd of oddNumbers"
+       [ngClass]="{ odd: odd % 2 != 0 }"
+       [ngStyle]="{backgroundColor:odd %2 !==0 ?'yellow':'transparent'}">
+      {{ odd }}
+    </li>
+  </div>
+</ng-template>
 
+<hr>
 <p appBasicHighlight>I'm from Basics</p>
 <p appBetterHighlight>I'm from Better (Using Renderer)</p>
+<hr>
+<p>Using custom structural directive</p>
+<div *appUnless="onlyOdd">
+  <li
+  *ngFor="let even of evenNumbers"
+   [ngClass]="{ odd: even % 2 == 0 }"
+   [ngStyle]="{backgroundColor:even %2 !==0 ?'yellow':'transparent'}">
+{{ even }}
+</li>
+<hr>
+<p>Use of [ngSwitch]</p>
 
+<div [ngSwitch]="value">
+  <p *ngSwitchCase="5" >Value is 5</p>
+  <p *ngSwitchCase="15">Value is 15</p>
+  <p *ngSwitchCase="25">Value is 25</p>
+  <p *ngSwitchCaseDefault>Value is Default</p>
+</div>
+
+</div>
 </div>

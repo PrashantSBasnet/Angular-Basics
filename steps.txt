@@ -120,5 +120,13 @@ LifeCycle of Component
 	ngOnDestroy		Called once the component is about to be distroyed
 
 	
+Directives
+	Attribue Directives    only affect/change the element they are added to (eg. changes bg color) [ngClass] [ngStyle]
+	Structural Directives  affect a whole area in the DOM (elements get added/removed) eg. *ngIf *ngFor
 	
-Adding navigation with EventBinding and ngIf
+	angular can render templates without DOM (while service use cases..)
+
+
+
+
+
