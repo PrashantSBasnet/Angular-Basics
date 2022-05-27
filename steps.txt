@@ -121,10 +121,31 @@ LifeCycle of Component
 
 	
 Directives
-	Attribue Directives    only affect/change the element they are added to (eg. changes bg color) [ngClass] [ngStyle]
-	Structural Directives  affect a whole area in the DOM (elements get added/removed) eg. *ngIf *ngFor
-	
+	Attribute Directives    only affect/change the element they are added to (eg. changes bg color) [ngClass] [ngStyle]
 	angular can render templates without DOM (while service use cases..)
+	create custom attribute directives
+	use of Decorator @HostListener, @HostBinding 
+
+	*Structural Directives  affect a whole area in the DOM (elements get added/removed) eg. *ngIf *ngFor
+	
+
+Services
+	a normal typescript class. no need to add @Service
+	class that acts as a central repository(business unit) where you can centralize your business logic
+	
+	Dependency Injection
+	-angular creates instances of services when it comes across selectors
+	-Hiearchial injector 
+		AppModule 	(if we provide a service in AppModule, the same instance of the class of the service is available in whole app/component/directive
+		AppCompoent 	(same instace of service is available for all Components (but not for other services)) app component and its children
+	Any other compononent 	(same instance of service is available for the Components and all its child components) 
+	Single component with no child components - instances can be ovveriden in the parent 
+
+	@Injectibe() -- used in the service where sth is expected to be injected
+	export class AccountsServce {}
+
+	
+	
 
 
 
