@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { Recipe } from '../recipe.model';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -9,18 +10,15 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeListComponent implements OnInit {
  @Output() recipeWasSelected= new EventEmitter<Recipe>();
-
- recipes: Recipe[] = [
-     new Recipe("Test Recipe", "this is for testing purpose", "https://www.google.com/search?q=images+recipe&tbm=isch&ved=2ahUKEwi67OHH2vX3AhX2zaACHUaFCQoQ2-cCegQIABAA&oq=images+recipe&gs_lcp=CgNpbWcQAzIFCAAQgAQyBQgAEIAEMgUIABCABDIGCAAQHhAFMgYIABAeEAgyBggAEB4QCDIGCAAQHhAIMgYIABAeEAgyBggAEB4QCDIGCAAQHhAIOgcIABCxAxBDOgQIABBDUPwGWNAMYIoOaABwAHgAgAHsAYgBjAySAQMyLTeYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=YImLYrq8Lfabg8UPxoqmUA&bih=661&biw=1360#imgrc=2ZUZnZVXTOUYuM" )
-,    new Recipe("Test Recipe", "this is for testing purpose", "https://www.google.com/search?q=images+recipe&tbm=isch&ved=2ahUKEwi67OHH2vX3AhX2zaACHUaFCQoQ2-cCegQIABAA&oq=images+recipe&gs_lcp=CgNpbWcQAzIFCAAQgAQyBQgAEIAEMgUIABCABDIGCAAQHhAFMgYIABAeEAgyBggAEB4QCDIGCAAQHhAIMgYIABAeEAgyBggAEB4QCDIGCAAQHhAIOgcIABCxAxBDOgQIABBDUPwGWNAMYIoOaABwAHgAgAHsAYgBjAySAQMyLTeYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=YImLYrq8Lfabg8UPxoqmUA&bih=661&biw=1360#imgrc=2ZUZnZVXTOUYuM" )
-
-  ];
+ recipes: Recipe[] |any;
 
 
-
-  constructor() { }
+ //injecting service
+  constructor(private recipeService:RecipeService) { }
 
   ngOnInit() {
+    this.recipes=this.recipeService.getRecipes();
+
   }
 
   onRecipeSelected(recipe:Recipe){
