@@ -9,7 +9,7 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
- @Output() recipeWasSelected= new EventEmitter<Recipe>();
+// @Output() recipeWasSelected= new EventEmitter<Recipe>();
  recipes: Recipe[] |any;
 
 
@@ -21,8 +21,10 @@ export class RecipeListComponent implements OnInit {
 
   }
 
-  onRecipeSelected(recipe:Recipe){
-    this.recipeWasSelected.emit(recipe);
-  }
+  // onRecipeSelected(recipe:Recipe){
+  //   this.recipeWasSelected.emit(recipe);
+  // }
+
+  
 
 }
