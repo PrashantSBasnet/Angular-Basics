@@ -15,7 +15,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <button>New Recipe</button>
+          <button (click)="onNewRecipe()">New Recipe</button>
         </div>
       </div>
       <br />
@@ -45,8 +45,9 @@
 
           <!-- using service for cross component communication -->
           <app-recipe-item
-          *ngFor="let recipeEl of recipes"
+          *ngFor="let recipeEl of recipes; let i = index"
           [recipe]="recipeEl"
+          [index]="i"
           ></app-recipe-item>
         </div>
       </div>

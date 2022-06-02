@@ -10,6 +10,7 @@ import { RecipeService } from '../../recipe.service';
 export class RecipeItemComponent implements OnInit {
 
   @Input() recipe: Recipe | any;
+  @Input() index: number | any;
   //@Output() recipeSelected = new EventEmitter<void>();
 
  // constructor() { }
@@ -23,9 +24,9 @@ export class RecipeItemComponent implements OnInit {
 
   //using cross component service communicator
 
-  constructor(private respiceService: RecipeService){}
-  onSelected(){
-    this.respiceService.recipeSelected.emit(this.recipe);
-  }
+  // constructor(private respiceService: RecipeService){}
+  // onSelected(){
+  //   this.respiceService.recipeSelected.emit(this.recipe);
+  // }
 
 }
