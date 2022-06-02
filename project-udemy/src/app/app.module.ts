@@ -27,7 +27,7 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
   imports: [
     BrowserModule
   ],
-  providers: [ShoppingListService], //so that it is availabe is recipe as well
+  providers: [ShoppingListService], //so that it is availabe in recipe as well
   bootstrap: [AppComponent]
 })
 export class AppModule { }
