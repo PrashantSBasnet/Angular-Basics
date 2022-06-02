@@ -144,10 +144,29 @@ Services
 	@Injectibe() -- used in the service where sth is expected to be injected
 	export class AccountsServce {}
 
+.slice() 
+	to only access part of the array(data) for security purpose
+
 	
+Cross Component communication Services
 	
 
+				A
+
+B							C
+								D	
 
 
+B ---SERVICE ----> D 
+
+B ----> SERVICE (Notify)
+Service -------> D<Subject/EventEmitter>
+
+
+
+Routing
+Child routes
+Passing dynamic parameter to links (via Routing-- passing index in routes)
+	
 
 
