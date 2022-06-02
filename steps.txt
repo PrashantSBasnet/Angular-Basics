@@ -169,4 +169,17 @@ Child routes
 Passing dynamic parameter to links (via Routing-- passing index in routes)
 	
 
+Observables -- are stream of data
+            -- are constructs which is subscribed to be known about the change in data
+            -- e.g. this.route.params.subscrie(....) -> params is an obervable because its value changes 
+
+Types of Observables
+e.g HTTP Request doesn't keep on emitting values 
+subscribe -- observable emits values 
+
+under the hood of Observables
+	wrap some event source (eg ajax request, click listener, interval)
+	.subscribe is used to deal with those data or error using custom functions
+
+
 
