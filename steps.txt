@@ -182,4 +182,12 @@ under the hood of Observables
 	.subscribe is used to deal with those data or error using custom functions
 
 
+Operators
 
+	
+Subject 			 						Observable
+active										passive
+-can be triggered from code 							e.g. wraps callback, event
+-next can be called
+-only for cross component communication when @Output is not used 
+-subscribed manually
