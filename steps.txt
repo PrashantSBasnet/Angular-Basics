@@ -39,27 +39,63 @@ constructor()
 
 
 Data Binding
-String interpolation {{ data }}  --data can be in the form of number or other formats which can be converted easily into String
-Property binding [property]="data"
+String interpolation {{ data }}  
+--to send data from typescript object to html template
+--data can be in the form of number or other formats which can be converted easily into String
+
+
+Property binding [property]= "data"
+--to change any property in the html template
+
+
 Event Binding (event) ="expression"
+--by passing through function
+--to listen keystrokes, clicks
+<button (click)="passValue($event)">Pass</button>
+
+passValue(e){
+	console.log(e.target.value);
+}
+
+
 Two-way-binding [(ngModel)]="data"
+--import FormsModule because ngModel is the part of FormsModule
+
+
 
 
 Directives 
 	instruction in the DOM
 	e.g using selector to use components
 
+
 Structural directive
+--modify the DOM
+--cannot use multiple structural directives in the same dom 
+<p *ngIf....  >
+
 *ngIf
 	* is required 
 	structural directive because it changes the structure of our DOM (it either adds the element or doesn't)
+	<p *ngIf="isApproved">Created method that holds status</p>
 
-using ngStyle
 
 *ngFor 
-	let i = index (index gives access to the 
+	<p *ngFor "let numer of numbers; let i =index"
+		*ngIf "i%2==0"> //cannot use multiple structural directive in the same DOM
+
+*ngSwitch
+
 
 Attribute directives
+--only modifies the property of the DOM
+
+ngClass
+<p [ngClass]={...}>
+
+ngStyle
+	appends style dynamically
+
 
 Models
 	typescript file
@@ -85,9 +121,39 @@ Component and Databinding
 		@Input - from parent to child component
 		@Output() - from child to parent component/ to make a property listenable from outside i.e. parent component e.g. emit
 
+
+
 Cross Component Communication
 	Approach 1: using @Input and @Output (Binding to Custom Properties)
-	Approach 2: 
+				- appropriate for parent to child components
+			
+			PARENT COMPONENT	      ------------------> 							CHILD COMPONENT
+				[ngModel]				--------->									@Input -- value comes from another component
+						
+					<input type= "text" [(ngModel)="value"]>	---->				@Input() //so that value comes from outside component
+																					value = 'new value;
+
+				
+																					Obtained value from parennt {{ value }}
+
+
+
+		     CHILD COMPONENT 			---------------------->  					PARENT COMPONENT								
+			
+			 <input type="text" (input)="sendMessageToParent($event)">
+
+			 ts
+
+			@Output() //for cross component
+			-- create Event emitter to emit the value to the parent component		
+
+			-- sendMessageToParent(e){											 - bind the event to a function
+					//emit value to parent
+			}
+
+
+
+	Approach 2: using Services
 
 
 Event Capsulation 
@@ -104,20 +170,32 @@ Local Reference in Templates
 	
 
 Projecting Content Into Components with ng-content
+	-projected component can be displayed using <ng-content></ng-content>
 	-(default angular behaviour) every HTML between opening and closing <app-server-element>....</app-server-element> is lost 
 	-put <ng-content></ng-content> where it is to be displayed	
 	-can be used for navigation for simple apps
 
 
+LifeCycle Hooks
+-directives and components have
+-components have more LifeCycle Hooks than directives
+-lifecycle hooks in directives: ngOnInit, ngOnChanges, ngDoCheck, ngOnDestroy
+-constructor() is a typescript feature (not a lifecycle hook)
+
+
 LifeCycle of Component
-	ngOnChanges		Starts when new component is created. Also called after a bound input property changes (when property receives new values)
+	ngOnChanges		-Starts when new component is created. Also called after a bound input property changes (when property receives new values)
+					-do not make any expensive operations (like API calls)
 	ngOnInit		Called once the component is initialized. Component is not added to DOM yet so invisible. 
-	ngDoCheck 		Called during every change detection run (e.g when property changes) executed on every check. (e.g for every triggering events, timer)
-	ngAfterContentInit 	Called after content (ng-content) has been projected into view
-	ngAfterContentChecked	Called every time the projected content has been checked
-	ngAfterViewInit 	Called after the component's view (and child views) has been initialized
+	ngDoCheck 		-Called during every change detection run (e.g when property changes) executed on every check. (e.g for every triggering events, timer)
+					-do not make any expensive operations (like API calls)
+					-never use ngDoCheck and ngOnChanges in same component because it can trigger infinite loops
+	ngAfterContentInit 	-Called after content (ng-content) has been projected into view
+	ngAfterContentChecked -Called every time the projected content has been checked
+	ngAfterViewInit 	-Called after the component's view (and child views) has been initialized
 	ngAfterViewChecked 	Called every time the view (and child's views) have been checked
-	ngOnDestroy		Called once the component is about to be distroyed
+	ngOnDestroy		-Called once the component is about to be distroyed
+					-for cleaning activities, closing connection, prevents memory leaks, unsubscribing, 
 
 	
 Directives
@@ -130,10 +208,13 @@ Directives
 	
 
 Services
-	a normal typescript class. no need to add @Service
-	class that acts as a central repository(business unit) where you can centralize your business logic
+	-a normal typescript class. no need to add @Service or any decorator
+	-service can be injected into another service @Injectibe()
+	-class that acts as a central repository(business unit) where you can centralize your business logic (sharing data or functionality)
+	-Usage: Code reuse, cross component communication
 	
-	Dependency Injection
+Dependency Injection
+	-to inform certain service depends on another
 	-angular creates instances of services when it comes across selectors
 	-Hiearchial injector 
 		AppModule 	(if we provide a service in AppModule, the same instance of the class of the service is available in whole app/component/directive
@@ -163,8 +244,47 @@ B ----> SERVICE (Notify)
 Service -------> D<Subject/EventEmitter>
 
 
+Template Reference Variable
+- Also known as local reference varialbe
+- can be added to any element in DOM
+- need to be passed to use it in typescript component
+- using @Viewchild we can access the element in typescript
+
+.html
+<p #channel>Test</p>
+<input type ="text" #myInput>
+<button (click)="sendInput(myInput, channel)">Send</button>
+
+component.ts
+sendInput(input, channel){
+	console.log(input.value);
+	console.log(input.channel);  //gives whole <p>....
+	cosole.log(input.channel.innerText); //gives text present in the <p> property
+}
+
+
+@ViewChild('myInput', {static:true}) myCustomInput;
+- when we have to access DOM before any event is triggered
+- 
+
 
 Routing
+		-navigation between pages
+		-in SPA, navigation between multiple views
+		- eg. 
+			const routes: Routes =[ 
+				{ path: '', redirectTo: 'home', pathMatch: 'full' }, //when there's no path
+				{ path: 'home', component: HomeComponent},
+				{ path: 'book', component: BookComponent},
+				{ path : 'product/id: component: ProductComponent'},
+				{ path: '**', component: PageNotFoundComponent} //the routes placed below wild card routes will not be functional
+			]
+		- <a routerLink= "/home">Home</a>
+
+Routing Programmetically (try example from youtube)
+	- used when certain action is required to be performed (like database update) before navigating to other routes
+
+ 
 Child routes
 Passing dynamic parameter to links (via Routing-- passing index in routes)
 	
@@ -190,4 +310,31 @@ active										passive
 -can be triggered from code 							e.g. wraps callback, event
 -next can be called
 -only for cross component communication when @Output is not used 
+(note: angular event emitter is used for events in the same components)
 -subscribed manually
+-must be destroyed								must be destroyed ngOnDestroy(){}
+
+-type of observable
+-implements both observer and observable interface				cannot be consumer
+(this means both the consumer and provider)
+-unicasting									multicasting
+
+
+package.json defines what node modules to be installed while using npm install
+
+
+XMLHttpRequest
+- enables a web page to update just part of a page without disrupting what the user is doing
+- heavily used in AJAX programming
+
+AJAX
+- asynchronous javascript and XML (JSON preferable nowadays)
+- approach of using a number of existing technologies together (HTML, CSS, JavaScript, DOM, XML, XLST)
+- web page is not required to reload entire page for updating the contents, thus boosting performance
+
+callback
+- function passed to another function
+
+Event Handler
+- type of callback
+- asynchronous programming

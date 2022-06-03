@@ -24,3 +24,4 @@ export class AppComponent implements OnInit, OnDestroy {
     this.activatedSub.unsubscribe();
   }
 }
+ 
