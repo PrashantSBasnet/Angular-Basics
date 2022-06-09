@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
+import { InteractService } from 'src/app/shared/interact.service';
 
 @Component({
   selector: 'app-child1',
@@ -7,13 +8,20 @@ import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 })
 export class Child1Component implements OnInit {
 
-  constructor() { }
+  constructor(private interactService: InteractService) { }
+
+  @Input() fetchedData:string ='';
 
   ngOnInit(): void {
+    this.interactService.data$.subscribe(
+      ()=>this.fetchedData="I'm from service"
+    )
   }
 
   @Output() greetEvent = new EventEmitter<string>();
   name='I m from child'
+
+
 
   callParentGreet():void{
     this.greetEvent.emit(this.name);

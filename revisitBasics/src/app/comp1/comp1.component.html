@@ -1,11 +1,15 @@
 
 <h2>Component1</h2>
 <p>String interpolation: {{name}}</p>
-<p>Property binding: <button class="btn btn-primary"[disabled]="!allowNewServer" >Add Server</button></p>
-
+<p>Property binding: <button class="btn btn-primary"[disabled]="!allowNewServer" (click)="populate()" >Add Server</button></p>
+<p *ngIf="allowNewServer">Structural directive when true</p>
+<span *ngIf="lengthCondition" ngClass="lengthCondition">No of added Servers: {{this.val.length}}</span><br>
+<li *ngFor="let item of val">
+  {{item}}</li>
 <input [(ngModel)]= "username" type="text">
 <p>Value from 2 way binding: {{username}}</p>
 <p>Message from child component: {{message}}</p>
+
 <br><br>
 <!-- <form >
   <label for="fname">First name:</label><br>
@@ -16,4 +20,5 @@
 </form> -->
 
 <app-child1 (greetEvent)="greet($event)"></app-child1>
+
 

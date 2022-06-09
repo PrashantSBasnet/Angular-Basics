@@ -401,3 +401,30 @@ mySubject = new Subject<any>();
 
 Behavior Subject
 -userName = new BehaviorSubject('john'); //sets value initially
+
+
+Forms
+1. Template-Driven -> Angular infers the Form Object from the DOM
+		   -> Angular creates form representation on the basis of html file (it is unseen, happens under the hood)
+		   -> 	<form (onSubmit)="functionName()" #f="ngForm">
+				<input type ="text" ngModel name="fname">
+				<input type ="text" ngModel name="lname">
+			</form>
+		     
+			Values of the form are accessbible by.. f.fname, f.lname....
+
+		   -> @ViewChild('vr')
+			--for validation
+			--when form is not submitted but value is requried
+		   -> displaying messages for form validation 
+	           -> using ngModelGroup and radioButton with two way binding
+	           -> setting and patching Form values
+		   -> setValue ovverides all the controls of the forms -- not the best approach
+		   -> patchValue is the best approach
+
+
+	
+
+2. Reactive Approach - Form is created programmatically and synchronized with the DOM
+			
+

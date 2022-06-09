@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter,Output, Input } from '@angular/core';
-import { RevisitService } from '../revisit.service';
+
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -11,15 +11,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class Comp1Component implements OnInit {
 
+  val:string[]=[];
+
   name:string="John Doe";
 
   @Input() message:string='';
 
   allowNewServer:boolean=false;
+  lengthCondition:boolean=false;
 
   username:string= "value"
 
-  constructor(private revisit:RevisitService) {
+  constructor() {
     setTimeout(()=>{
       this.allowNewServer=true
     },5000)
@@ -34,4 +37,13 @@ export class Comp1Component implements OnInit {
    this.message=name;
   }
 
-}
+  populate(){
+      this.val.push('Server added!');
+      this.lengthCondition=true;
+  }
+
+
+
+  }
+
+

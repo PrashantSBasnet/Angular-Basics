@@ -1,11 +1,42 @@
 <h2>Component2</h2>
 
-<p>Value from App Component: {{value}}</p>
+<p>Value from App Component: {{ value }}</p>
 
-<form action="/action_page.php">
-  <label for="fname">First name:</label><br>
-  <input type="text" id="fname" name="fname" value="John"><br>
-  <label for="lname">Last name:</label><br>
-  <input type="text" id="lname" name="lname" value="Doe"><br><br>
-  <input type="submit" value="Submit">
+<form (ngSubmit)="onSubmit()" #f="ngForm">
+<div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
+<div class="form-group">
+
+  <label for="username">First name:</label><br />
+  <input
+    type="text"
+    id="username"
+    ngModel
+    name="username"
+    required
+    #first="ngModel"
+  /><br />
+
+  <button type="button" (click)="suggestUserName()">Suggest a username</button>
+  <span *ngIf="!first.valid && !first.touched">Please fill the field</span>
+  <br />
+
+  <label for="lname">Last name:</label><br />
+  <input type="text" ngModel name="lname" id="lname" #last="ngModel" /><br />
+  <span *ngIf="!first.valid && !last.touched">Please fill the field</span>
+  <br /><br />
+
+  <textarea name="qans" rows="3" [(ngModel)]="answer"></textarea>
+  <p>Your reply: {{ answer }}</p>
+  <button>Submit</button>
+
+  <div class="radio" *ngFor="let gender of genders">
+    <input type="radio" name="gender" ngModel [value]="gender" />{{ gender }}
+  </div>
+
+</div>
+</div>
 </form>
+<br />
+<br />
+
+<button (click)="useService($event)">Service Example</button>
