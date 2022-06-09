@@ -115,6 +115,12 @@ Component and Databinding
 	Binding to Custom Properties
 		(default) all properties of components are only accessible inside that component
 		@Input() decorator solves this problem by exposing it to other components
+		@Input() and @Output() give a child component a way to communicate with its parent component. 
+		
+		@Input() lets a parent component update data in the child component. 
+		Conversely, @Output() lets the child send data to a parent component. We emit it as EventEmitter
+
+
 		@Input()  element: { type: string; name: string; content: string; } | any; 
 		assigning alias e.g @Input('sample')... now alias name ('sample') should be used in other components to pass data
 		
@@ -128,7 +134,7 @@ Cross Component Communication
 				- appropriate for parent to child components
 			
 			PARENT COMPONENT	      ------------------> 							CHILD COMPONENT
-				[ngModel]				--------->									@Input -- value comes from another component
+				[ngModel]				--------->					@Input -- value comes from another component
 						
 					<input type= "text" [(ngModel)="value"]>	---->				@Input() //so that value comes from outside component
 																					value = 'new value;
@@ -338,3 +344,60 @@ callback
 Event Handler
 - type of callback
 - asynchronous programming
+
+
+Observable													 Promise
+-streams the data in package (chunks)										-provides all data at once
+-provides multiple values						
+-doesn't wait for all the data to be available									-waits for all the data
+-only provide data if there's someone to use it									-always provides 
+-provided by JS library RxJS											-native to JS
+
+-wrapper around the ordinary stream of data
+
+
+RxJS
+Observable  	<------------- 			Observer 				
+(provider/stream of data)			(Subscriber)
+
+
+myObervable = new Observable((observer) =>{
+	console.log('Observable starts');
+	observer.next("1"); //to emit data next method is called
+	observer.next("2");
+	observer.next("3");
+	observer.next("4");
+})
+
+//Observable only emits data if there's a Subscriber
+//subscribe takes 3 parameters which are optional
+ngOnInit(){
+	this.myObervable.subscribe((val)=>{ //next is a callback function. it is executed 4 times because 4 data emitted 
+		console.log(val);
+	});
+}
+
+
+
+Subject
+Component1 					<-----Subject------->		 Component2	
+-inject service	
+-fetch value in constructor
+	this.uname.subscribe(uname)=>{
+		this.uname;		
+	})
+
+-updateMethod(uname){								same method in all other components...
+	this.serviceName.userName.next(uname.value)
+}
+
+
+
+
+Service
+mySubject = new Subject<any>();
+
+
+
+Behavior Subject
+-userName = new BehaviorSubject('john'); //sets value initially
