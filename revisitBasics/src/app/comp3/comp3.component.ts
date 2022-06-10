@@ -19,7 +19,7 @@ export class Comp3Component implements OnInit {
     this.signupForm= new FormGroup({
       'username': new FormControl(null, Validators.required),
       'lastname': new FormControl(null, [Validators.required, Validators.email]),
-      //this.forbiddenValidator gives error because at this point the function is unknown. So, binding is must!!
+      //this.forbiddenValidator gives error because at this point the function is unknown to angular. So, binding is must!!
       'qans': new FormControl(null),
       'validator': new FormControl(null, [Validators.required, <any>this.forbiddenValidator.bind(this)]), //custom validation
       'gender': new FormControl('male'),
@@ -48,12 +48,12 @@ export class Comp3Component implements OnInit {
   }
 
 
-  //validator                             //key          value  pair
+  //validator                                //key        value
   forbiddenValidator(control:FormControl):{[s:string ] : boolean  }|any
   {
-    if(this.forbiddenValues.indexOf(control.value)!=-1) {
+    if(this.forbiddenValues.indexOf(control.value)!=-1) { //-1 is returned when the value is not the part of the array
       return { 'valueisForbidden':true };
     }
-    return null;
+    return null; //Angular rule: nothing is passed when validation is correct
   }
 }

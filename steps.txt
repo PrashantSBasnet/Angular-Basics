@@ -403,7 +403,7 @@ Behavior Subject
 -userName = new BehaviorSubject('john'); //sets value initially
 
 
-Forms
+Forms - in angular, it is group of contorls therefore FormGroup
 1. Template-Driven -> Angular infers the Form Object from the DOM
 		   -> Angular creates form representation on the basis of html file (it is unseen, happens under the hood)
 		   -> 	<form (onSubmit)="functionName()" #f="ngForm">
@@ -419,12 +419,58 @@ Forms
 		   -> displaying messages for form validation 
 	           -> using ngModelGroup and radioButton with two way binding
 	           -> setting and patching Form values
-		   -> setValue ovverides all the controls of the forms -- not the best approach
+
+
+		   -> setValue ovverides all the controls of the forms -- not the best approach  (ngGrouping is must)
 		   -> patchValue is the best approach
+	
+			<div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
+			<div class="form-group">			
+
+			 suggestUserName(){
+     				 const suggestedName= 'Superuser';
+     				 this.signupForm.form.patchValue({
+        				userData:{
+          				username: suggestedName
+        					},
+     						 })
+    							}
 
 
 	
 
-2. Reactive Approach - Form is created programmatically and synchronized with the DOM
-			
+2. Reactive Approach    -> Form is created programmatically and synchronized with the DOM
+			-> to create form programatically, matching the structure of the form (i.e html) with the model (typescript obj)
+			-> form is not configured in the template, only synchronized with the directives
+			-> ...new FormControl(para1, para2,..) can take one or more than one parameter
+		
+			   ngOnInit(): void {
+    				this.signupForm= new FormGroup({
+     			  'username': new FormControl(null),
+     			  'lastname': new FormControl(null),
+      			  'gender': new FormControl('male')
+   					 }); 
+  			   }
+
+			-> <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()"> //ngSubmit as a hook to sychronize the form
+										     with the directives
+			-> Custom Validator
+				        -   forbiddenValues = [Dinesh, Ramesh]
+		
+			   ngOnInit()   -  'validator' = new FormControl(null, [Validators.required, fobidedenValidator.bind(this)])
+					    (this.forbiddenValidator gives error because at this point the function is unknown to angular. So, binding is must!!)
+		           
+			   forbiddenValidator(control:FormControl):{[s:string]:boolean]}  //key value pair
+			   {
+				if (this.forbiddenValues.indexOf(control.value)!=-1){ //-1 is returned when the value is not the part of the array
+					return {'valueisForbidden':true};
+				}
+				return null;  //Angular rule: nothing is passed when validation is correct. That's how angular works
+
+			   }
+
+			   <span *ngIf="signupForm.get('validator').errors['valueisForbidden']">Invalid entry</span>
+
+
+
 
