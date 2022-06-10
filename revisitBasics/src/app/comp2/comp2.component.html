@@ -2,41 +2,59 @@
 
 <p>Value from App Component: {{ value }}</p>
 
+<h3>Template Driven Form</h3>
 <form (ngSubmit)="onSubmit()" #f="ngForm">
-<div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
-<div class="form-group">
+  <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
+    <div class="form-group">
+      <label for="username">First name:</label><br />
+      <input
+        type="text"
+        id="username"
+        ngModel
+        name="username"
+        required
+        #first="ngModel"
+      /><br />
 
-  <label for="username">First name:</label><br />
-  <input
-    type="text"
-    id="username"
-    ngModel
-    name="username"
-    required
-    #first="ngModel"
-  /><br />
+      <button type="button" (click)="suggestUserName()">
+        Suggest a username
+      </button>
+      <span *ngIf="!first.valid && !first.touched">Please fill the field</span>
+      <br />
 
-  <button type="button" (click)="suggestUserName()">Suggest a username</button>
-  <span *ngIf="!first.valid && !first.touched">Please fill the field</span>
-  <br />
+      <label for="lname">Last name:</label><br />
+      <input
+        type="text"
+        ngModel
+        name="lname"
+        id="lname"
+        #last="ngModel"
+      /><br />
+      <span *ngIf="!first.valid && !last.touched">Please fill the field</span>
+      <br /><br />
 
-  <label for="lname">Last name:</label><br />
-  <input type="text" ngModel name="lname" id="lname" #last="ngModel" /><br />
-  <span *ngIf="!first.valid && !last.touched">Please fill the field</span>
-  <br /><br />
+      <textarea name="qans" rows="3" [(ngModel)]="answer"></textarea>
+      <p>Your reply: {{ answer }}</p>
+      <button>Submit</button>
 
-  <textarea name="qans" rows="3" [(ngModel)]="answer"></textarea>
-  <p>Your reply: {{ answer }}</p>
-  <button>Submit</button>
+      <div class="radio" *ngFor="let gender of genders">
+        <input type="radio" name="gender" ngModel [value]="gender" />{{
+          gender
+        }}
+      </div>
 
-  <div class="radio" *ngFor="let gender of genders">
-    <input type="radio" name="gender" ngModel [value]="gender" />{{ gender }}
+      <div>
+        <h3>Data from the form:</h3>
+        <p>Firstname: {{ user.username }}</p>
+        <p>Lastname: {{ user.lname }}</p>
+        <p>Question: {{ user.qans }}</p>
+        <p>Gender: {{ user.gender }}</p>
+      </div>
+    </div>
   </div>
-
-</div>
-</div>
 </form>
 <br />
 <br />
 
 <button (click)="useService($event)">Service Example</button>
+<button (click)="reset()">Reset</button>

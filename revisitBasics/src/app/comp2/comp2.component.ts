@@ -9,12 +9,12 @@ import { InteractService } from '../shared/interact.service';
 })
 export class Comp2Component implements OnInit {
 
-  @ViewChild('f') signupForm :NgForm |any; //can be used instead of onSubmit
+  @ViewChild('f') signupForm: NgForm | any; //can be used to access the form
 
   @Input() value: string | undefined;
 
-  answer:string=''
-  genders =['male', 'female', 'others']
+  answer: string = ''
+  genders = ['male', 'female', 'others']
 
 
   // for setting all values
@@ -31,14 +31,14 @@ export class Comp2Component implements OnInit {
   // }
 
   //correct approach, for selected values only
-  suggestUserName(){
-      const suggestedName= 'Superuser';
-      this.signupForm.form.patchValue({
-        userData:{
-          username: suggestedName
-        },
-      })
-    }
+  suggestUserName() {
+    const suggestedName = 'Superuser';
+    this.signupForm.form.patchValue({
+      userData: {
+        username: suggestedName
+      },
+    })
+  }
 
   constructor(private interactService: InteractService) { }
 
@@ -54,6 +54,25 @@ export class Comp2Component implements OnInit {
   //   console.log(form.value.fname)
   // }
 
-  onSubmit(){}
+  //to fetch form values
+  user = {
+    username: '',
+    lname: '',
+    qans: '',
+    gender: ''
+  }
+
+  onSubmit() {
+    this.user.username = this.signupForm.value.userData.username;
+    this.user.lname = this.signupForm.value.userData.lname;
+    this.user.qans = this.signupForm.value.userData.qans;
+    this.user.gender = this.signupForm.value.userData.gender;
+
+
+  }
+
+  reset(){
+    this.signupForm.reset()
+  }
 
 }
