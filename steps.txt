@@ -471,6 +471,22 @@ Forms - in angular, it is group of contorls therefore FormGroup
 
 			   <span *ngIf="signupForm.get('validator').errors['valueisForbidden']">Invalid entry</span>
 
+		
+                        -> Asynchronous Validator
+				  forbiddenLast(control:AbstractControl): Promise<any> | Observable<any> {
+    					const promise = new Promise<any>((resolve, reject)=>{
+      					setTimeout(()=>{
+        				if (control.value === 'test'){
+            				resolve ({'lastNameisForbidden':true});
+        				}
+        				else{
+         				 resolve(null)
+       					 }
+     					 }, 1500);
+    					});
+    					return promise;
+  						}
+
 
 
 
