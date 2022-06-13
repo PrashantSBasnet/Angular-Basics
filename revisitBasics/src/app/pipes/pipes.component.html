@@ -1,0 +1,33 @@
+<hr />
+<h2>PIPE Component</h2>
+<button (click)="onAddServer()" >Add Server</button>
+<p>{{ sampleData }}</p>
+<p>{{ sampleData | uppercase }}</p>
+<p>{{ sampleDate | date: "fullDate" }}</p>
+<!--order of pipes left to right when mulitple pipes -->
+<p>{{ sampleDate | date: "fullDate" | uppercase }}</p>
+<!-- using custom pipe -->
+<p>{{ sampleData | uppercase | shorten }}</p>
+
+<!-- by passing parameter to custom pipe -->
+<!-- <p>{{ sampleData | shorten: 1 }} </p> -->
+
+<input type="text" [(ngModel)]="filteredStatus" />
+<br />
+
+<h3>Using filter pipes</h3>
+<ul>
+  <li
+    *ngFor="let server of servers |filter:filteredStatus 'status'"
+    [ngClass]="getStatusClasses(server)"
+    >
+
+    <span> {{ server.status }}</span>
+    <strong>{{ server.name }}</strong> | {{ server.instanceType }} |
+    {{ server.started | date: "fullDate" }}
+  </li>
+</ul>
+
+<!-- use of async pipe-->
+<br>
+<h2>App Status: {{appStatus | async}}</h2>

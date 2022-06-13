@@ -7,6 +7,10 @@ import { Comp2Component } from './comp2/comp2.component';
 import { NgModule } from '@angular/core';
 import { Child1Component } from './comp1/child1/child1.component';
 import { Comp3Component } from './comp3/comp3.component';
+import { PipesComponent } from './pipes/pipes.component';
+import { ShortenPipe } from './pipes/shorten.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
+
 
 
 @NgModule({
@@ -15,7 +19,10 @@ import { Comp3Component } from './comp3/comp3.component';
     Comp1Component,
     Comp2Component,
     Child1Component,
-    Comp3Component
+    Comp3Component,
+    PipesComponent,
+    ShortenPipe,
+    FilterPipe
 
   ],
   imports: [

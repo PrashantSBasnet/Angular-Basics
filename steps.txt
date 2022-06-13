@@ -488,5 +488,31 @@ Forms - in angular, it is group of contorls therefore FormGroup
   						}
 
 
+PIPES |
+	-> used to modify output while rendered 
+
+	-> for custom pipes, implement PipeTransform interface
+	-> transform() method of PipeTransform must return some value
+	-> Filter pipe  transform(value: any, filterString: string): any {}
+		--> Built in filtering pipe
+		--> changing data on the page (example input filed) doesn't re-run the pipe --saves memory
+		---> @Pipe({
+  				name: 'filter',
+  				pure: false     //changing default nature of angular not rerunning the pipe (now the rerun takes place automatically) // not a good practise
+				})
+	-> async pipe -- built in
+		      -- recognizes this is a promise and after given time (function) the data was sent through the subscription, 
+			 in case of observable where it subscribes automatically
+			
+			 <h2>App Status: {{appStatus | async}}</h2>
+   			 
+			//async
+  				appStatus = new Promise((resolve, reject)=>
+  				{
+    					setTimeout(()=>{
+      					resolve('stable')
+    				},2000);
+  				});
+
 
 

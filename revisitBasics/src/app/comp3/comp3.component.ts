@@ -52,9 +52,9 @@ export class Comp3Component implements OnInit {
     // })
 
     //patch value is for certain part of the form
-  
+
     this.signupForm.patchValue({
-      'username':'Malika'
+      'username':'somebody'
     })
   }
 
