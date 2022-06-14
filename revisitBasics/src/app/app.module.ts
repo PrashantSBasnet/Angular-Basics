@@ -10,7 +10,8 @@ import { Comp3Component } from './comp3/comp3.component';
 import { PipesComponent } from './pipes/pipes.component';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
-
+import { HttpClientModule } from '@angular/common/http';
+import { HttpRequestsComponent } from './http-requests/http-requests.component';
 
 
 @NgModule({
@@ -22,13 +23,14 @@ import { FilterPipe } from './pipes/filter.pipe';
     Comp3Component,
     PipesComponent,
     ShortenPipe,
-    FilterPipe
-
+    FilterPipe,
+    HttpRequestsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

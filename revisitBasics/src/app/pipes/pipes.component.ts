@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-pipes',
   templateUrl: './pipes.component.html',
   styleUrls: ['./pipes.component.css']
 })
-export class PipesComponent implements OnInit {
+export class PipesComponent {
 
   sampleData:string ='HelloPipe'
   sampleStaus: boolean = true;
@@ -69,6 +70,6 @@ export class PipesComponent implements OnInit {
     },2000);
   });
 
-  ngOnInit(): void {
-  }
 }
+
+
