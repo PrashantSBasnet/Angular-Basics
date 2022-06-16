@@ -34,5 +34,4 @@ export class HttpRequestsComponent implements OnInit {
       console.log(fetched)
     });
   }
-
 }

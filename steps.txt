@@ -134,7 +134,7 @@ Cross Component Communication
 				- appropriate for parent to child components
 			
 			PARENT COMPONENT	      ------------------> 							CHILD COMPONENT
-				[ngModel]				--------->					@Input -- value comes from another component
+				[ngModel]				--------->									@Input -- value comes from another component
 						
 					<input type= "text" [(ngModel)="value"]>	---->				@Input() //so that value comes from outside component
 																					value = 'new value;
@@ -311,19 +311,19 @@ under the hood of Observables
 Operators
 
 	
-Subject 			 						Observable
-active										passive
--can be triggered from code 							e.g. wraps callback, event
+Subject 			 															Observable
+active																			passive
+-can be triggered from code 													e.g. wraps callback, event
 -next can be called
 -only for cross component communication when @Output is not used 
 (note: angular event emitter is used for events in the same components)
 -subscribed manually
--must be destroyed								must be destroyed ngOnDestroy(){}
+-must be destroyed																must be destroyed ngOnDestroy(){}
 
 -type of observable
--implements both observer and observable interface				cannot be consumer
+-implements both observer and observable interface								cannot be consumer
 (this means both the consumer and provider)
--unicasting									multicasting
+-unicasting																		multicasting
 
 
 package.json defines what node modules to be installed while using npm install
@@ -346,12 +346,12 @@ Event Handler
 - asynchronous programming
 
 
-Observable													 Promise
--streams the data in package (chunks)										-provides all data at once
+Observable													 						Promise
+-streams the data in package (chunks)											-provides all data at once
 -provides multiple values						
 -doesn't wait for all the data to be available									-waits for all the data
 -only provide data if there's someone to use it									-always provides 
--provided by JS library RxJS											-native to JS
+-provided by JS library RxJS													-native to JS
 
 -wrapper around the ordinary stream of data
 
@@ -516,3 +516,26 @@ PIPES |
 
 
 
+
+Http Request
+
+API - Server 
+
+Anatomy of a Http Request
+Http Verb          ->   POST, GET, PUT, DELETE, ..
+URL (API Endpoint) ->	/posts/1
+Headers(Metadata)  -> 	{"Content-Type":"application/json"}
+Body 			   -> 	{title:"New Post"}  -> core data, mostly xml file
+
+
+-> HttpRequest uses Observables and it must be subscribed or else angular considers no one is intersted
+
+->  <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)"> //to send value to post method
+	
+	//to create post request
+ 	 onCreatePost(postData: { title: string; content: string }) {
+    	this.http.post('https://robust-service-308113-default-rtdb.firebaseio.com/posts.json', postData) //.json is for firebase
+      	.subscribe(responseData => {
+
+      });
+  	}
